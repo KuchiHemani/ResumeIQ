@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<h1>ResumeIQ – AI Resume Analyzer</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label>Upload Resume (PDF only):</label>
+    <input type="file" name="resume" required>
+
+    <label>Select Role:</label>
+    <select name="role">
+        <option>Java Full Stack</option>
+        <option>Cloud Engineer</option>
+        <option>Data Analyst</option>
+    </select>
+
+    <button type="submit">Analyze Resume</button>
+</form>
+
+{% if result %}
+<div class="result">
+    <h3>ATS Score: {{ result.score }}/100</h3>
+    <div class="progress">
+        <div class="progress-bar" style="width: {{ result.score }}%;">
+            {{ result.score }}%
+        </div>
+    </div>
+    <p><b>Matched Skills:</b> {{ result.matched }}</p>
+    <p><b>Missing Skills:</b> {{ result.missing }}</p>
+</div>
+{% endif %}
